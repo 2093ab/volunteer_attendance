@@ -47,7 +47,6 @@ const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => 
         <table>
           <thead>
             <tr>
-              <th>ID</th>
               <th>Check-in Time (KST)</th>
               <th>Check-out Time (KST)</th>
             </tr>
@@ -55,9 +54,8 @@ const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => 
           <tbody>
             {records.map((record) => (
               <tr key={record.id}>
-                <td>{record.id}</td>
-                <td>{record.check_in_time ? formatToKST(record.check_in_time) : 'N/A'}</td>
-                <td>{record.check_out_time ? formatToKST(record.check_out_time) : 'N/A'}</td>
+                <td>{record.check_in_time ? formatToKST(record.check_in_time) : ''}</td>
+                <td>{record.check_out_time ? formatToKST(record.check_out_time) : ''}</td>
               </tr>
             ))}
           </tbody>

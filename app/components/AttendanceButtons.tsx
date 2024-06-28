@@ -1,11 +1,31 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import supabase from '../../lib/supabaseClient';
 
 interface AttendanceButtonsProps {
   phoneSuffix: string;
 }
+
+const Button = styled.button`
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: #005bb5;
+  }
+`;
+
+const Message = styled.p`
+  margin-top: 10px;
+  color: green;
+`;
 
 const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) => {
   const [isCheckedIn, setIsCheckedIn] = useState(false);
@@ -69,10 +89,10 @@ const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) =>
 
   return (
     <div>
-      <button onClick={handleCheckInOut}>
+      <Button onClick={handleCheckInOut}>
         {isCheckedIn ? 'Check Out' : 'Check In'}
-      </button>
-      <p>{message}</p>
+      </Button>
+      <Message>{message}</Message>
     </div>
   );
 };

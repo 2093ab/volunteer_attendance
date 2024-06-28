@@ -52,14 +52,14 @@ export default function AttendancePage() {
 
   return (
     <Container>
-      <Title>Attendance Records</Title>
+      <Title>출석 기록</Title>
       <Input
         type="text"
-        placeholder="Enter Phone Suffix"
+        placeholder="전화번호 뒷 4자리를 입력하세요."
         value={phoneSuffix}
         onChange={(e) => setPhoneSuffix(e.target.value)}
         />
-        <Button onClick={handleShowTable}>Show Records</Button>
+        <Button onClick={handleShowTable}>기록 조회</Button>
         {showTable && <AttendanceTable phoneSuffix={phoneSuffix} />}
       </Container>
   );

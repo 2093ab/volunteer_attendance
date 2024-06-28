@@ -30,11 +30,11 @@ const Home = () => {
 
   return (
     <Container>
-      <Title>Attendance System</Title>
+      <Title>출석 관리 시스템</Title>
       <div>
         <Input
           type="text"
-          placeholder="Phone Suffix"
+          placeholder="전화번호 뒷 4자리를 입력하세요."
           value={phoneSuffix}
           onChange={(e) => setPhoneSuffix(e.target.value)}
         />

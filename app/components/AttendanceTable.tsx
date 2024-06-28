@@ -78,7 +78,7 @@ const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => 
 
   return (
     <TableContainer>
-      <Title>Attendance Records</Title>
+      <Title>출석 기록표</Title>
       {loading ? (
         <LoadingText>Loading...</LoadingText>
       ) : (

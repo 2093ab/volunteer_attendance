@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import AttendanceButtons from '../components/AttendanceButtons';
+import AttendanceButtons from './components/AttendanceButtons';
 
 export default function Home() {
   const [phoneSuffix, setPhoneSuffix] = useState<string>('');

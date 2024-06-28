@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import AttendanceTable from '../../components/AttendanceTable';
+import AttendanceTable from '../components/AttendanceTable';
 
 export default function AttendancePage() {
   const [phoneSuffix, setPhoneSuffix] = useState<string>('');

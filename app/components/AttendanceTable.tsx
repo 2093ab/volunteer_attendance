@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import supabase from '../lib/supabaseClient';
+import supabase from '../../lib/supabaseClient';
 
 interface AttendanceRecord {
   id: number;
   phone_suffix: string;
-  time: string;
-  is_start: boolean;
+  check_in_time: string;
+  check_out_time: string | null;
 }
 
 const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => {
@@ -48,16 +48,16 @@ const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => 
           <thead>
             <tr>
               <th>ID</th>
-              <th>Check-in/Check-out</th>
-              <th>Time (KST)</th>
+              <th>Check-in Time (KST)</th>
+              <th>Check-out Time (KST)</th>
             </tr>
           </thead>
           <tbody>
             {records.map((record) => (
               <tr key={record.id}>
                 <td>{record.id}</td>
-                <td>{record.is_start ? 'Check-in' : 'Check-out'}</td>
-                <td>{formatToKST(record.time)}</td>
+                <td>{record.check_in_time ? formatToKST(record.check_in_time) : 'N/A'}</td>
+                <td>{record.check_out_time ? formatToKST(record.check_out_time) : 'N/A'}</td>
               </tr>
             ))}
           </tbody>

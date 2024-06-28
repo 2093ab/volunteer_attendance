@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import supabase from '../../lib/supabaseClient';
+import { TableContainer, Subtitle, StyledTable, TableHead, TableRow, TableHeader, TableCell, LoadingText } from './StyledComponents';
 
 interface AttendanceRecord {
   id: number;
@@ -10,43 +10,6 @@ interface AttendanceRecord {
   check_in_time: string;
   check_out_time: string | null;
 }
-
-const TableContainer = styled.div`
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-`;
-
-const Title = styled.h3`
-  text-align: center;
-  margin-bottom: 20px;
-`;
-
-const StyledTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-`;
-
-const TableHead = styled.thead`
-  background-color: #f2f2f2;
-`;
-
-const TableRow = styled.tr``;
-
-const TableHeader = styled.th`
-  border: 1px solid #ddd;
-  padding: 8px;
-`;
-
-const TableCell = styled.td`
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-`;
-
-const LoadingText = styled.p`
-  text-align: center;
-`;
 
 const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => {
   const [records, setRecords] = useState<AttendanceRecord[]>([]);
@@ -78,7 +41,7 @@ const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => 
 
   return (
     <TableContainer>
-      <Title>출석 기록표</Title>
+      <Subtitle>출석 기록표</Subtitle>
       {loading ? (
         <LoadingText>Loading...</LoadingText>
       ) : (

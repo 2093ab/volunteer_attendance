@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import Modal from 'react-modal';
 
 export const Container = styled.div`
   display: flex;
@@ -114,6 +115,7 @@ export const TableCell = styled.td`
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+  cursor: pointer; /* 테이블 셀에 커서를 추가하여 클릭 가능한 느낌을 줌 */
 `;
 
 export const LoadingText = styled.p`
@@ -124,4 +126,23 @@ export const Message = styled.p`
   margin-top: 10px;
   color: green;
   text-align: center;
+`;
+
+export const ModalContainer = styled(Modal)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+export const ModalButton = styled(Button)`
+  max-width: 200px;
+  margin-top: 20px;
 `;

@@ -112,8 +112,8 @@ const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) =>
           <StyledTable>
             <TableHead>
               <TableRow>
-                <TableHeader>Check-in Time (KST)</TableHeader>
-                <TableHeader>Check-out Time (KST)</TableHeader>
+                <TableHeader>Check-in Time</TableHeader>
+                <TableHeader>Check-out Time</TableHeader>
               </TableRow>
             </TableHead>
             <tbody>

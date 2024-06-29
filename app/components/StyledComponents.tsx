@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
@@ -23,11 +27,19 @@ export const Subtitle = styled.h3`
   color: #333;
 `;
 
+export const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
 export const Input = styled.input`
   display: block;
-  width: calc(100% - 40px);
+  width: 100%;
+  max-width: 400px;
   padding: 15px;
-  margin: 10px auto;
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1em;
@@ -41,8 +53,9 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  display: inline-block;
-  width: calc(100% - 40px);
+  display: block;
+  width: 100%;
+  max-width: 400px;
   padding: 15px;
   background-color: #0070f3;
   color: white;
@@ -50,8 +63,9 @@ export const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-size: 1em;
-  margin-top: 10px;
+  margin: 10px 0;
   transition: background-color 0.2s;
+  text-align: center;
 
   &:hover {
     background-color: #005bb5;
@@ -106,4 +120,5 @@ export const LoadingText = styled.p`
 export const Message = styled.p`
   margin-top: 10px;
   color: green;
+  text-align: center;
 `;

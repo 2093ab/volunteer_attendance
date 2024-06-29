@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import supabase from '../../lib/supabaseClient';
-import { Button, Message } from './StyledComponents';
+import { Button, Message, FormContainer } from './StyledComponents';
 
 interface AttendanceButtonsProps {
   phoneSuffix: string;
@@ -69,12 +69,12 @@ const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) =>
   };
 
   return (
-    <div>
+    <FormContainer>
       <Button onClick={handleCheckInOut}>
         {isCheckedIn ? 'Check Out' : 'Check In'}
       </Button>
       <Message>{message}</Message>
-    </div>
+    </FormContainer>
   );
 };
 

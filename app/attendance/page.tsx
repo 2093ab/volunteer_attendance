@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Container, Title, Input, Button, NavLink } from '../components/StyledComponents';
+import { Container, Title, FormContainer, Input, Button, NavLink } from '../components/StyledComponents';
 import AttendanceTable from '../components/AttendanceTable';
 
 export default function AttendancePage() {
@@ -17,15 +17,17 @@ export default function AttendancePage() {
   return (
     <Container>
       <Title>출석 기록</Title>
-      <Input
-        type="text"
-        placeholder="전화번호 뒷 4자리를 입력하세요."
-        value={phoneSuffix}
-        onChange={(e) => setPhoneSuffix(e.target.value)}
-      />
-      <Button onClick={handleShowTable}>기록 조회</Button>
-      {showTable && <AttendanceTable phoneSuffix={phoneSuffix} />}
-      <NavLink href="/">메인 페이지로 이동</NavLink>
+      <FormContainer>
+        <Input
+          type="text"
+          placeholder="전화번호 뒷 4자리를 입력하세요."
+          value={phoneSuffix}
+          onChange={(e) => setPhoneSuffix(e.target.value)}
+        />
+        <Button onClick={handleShowTable}>기록 조회</Button>
+        {showTable && <AttendanceTable phoneSuffix={phoneSuffix} />}
+        <NavLink href="/">메인 페이지로 이동</NavLink>
+      </FormContainer>
     </Container>
   );
 }

@@ -2,15 +2,24 @@
 
 import { useState, useEffect } from 'react';
 import supabase from '../../lib/supabaseClient';
-import { Button, Message, FormContainer } from './StyledComponents';
+import { Button, Message, TableContainer, StyledTable, TableHead, TableRow, TableHeader, TableCell, LoadingText, FormContainer } from './StyledComponents';
 
 interface AttendanceButtonsProps {
   phoneSuffix: string;
 }
 
+interface AttendanceRecord {
+  id: number;
+  phone_suffix: string;
+  check_in_time: string;
+  check_out_time: string | null;
+}
+
 const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) => {
   const [isCheckedIn, setIsCheckedIn] = useState(false);
   const [message, setMessage] = useState('');
+  const [records, setRecords] = useState<AttendanceRecord[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchUserStatus();
@@ -34,6 +43,22 @@ const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) =>
         setIsCheckedIn(false);
       }
     }
+  };
+
+  const fetchRecords = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from('attendance')
+      .select('*')
+      .eq('phone_suffix', phoneSuffix)
+      .order('check_in_time', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching records:', error.message);
+    } else {
+      setRecords(data);
+    }
+    setLoading(false);
   };
 
   const handleCheckInOut = async () => {
@@ -66,6 +91,12 @@ const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) =>
     }
 
     fetchUserStatus();
+    fetchRecords();
+  };
+
+  const formatToKST = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
   };
 
   return (
@@ -74,6 +105,28 @@ const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) =>
         {isCheckedIn ? 'Check Out' : 'Check In'}
       </Button>
       <Message>{message}</Message>
+      {loading ? (
+        <LoadingText>Loading...</LoadingText>
+      ) : (
+        <TableContainer>
+          <StyledTable>
+            <TableHead>
+              <TableRow>
+                <TableHeader>Check-in Time (KST)</TableHeader>
+                <TableHeader>Check-out Time (KST)</TableHeader>
+              </TableRow>
+            </TableHead>
+            <tbody>
+              {records.map((record) => (
+                <TableRow key={record.id}>
+                  <TableCell>{record.check_in_time ? formatToKST(record.check_in_time) : ''}</TableCell>
+                  <TableCell>{record.check_out_time ? formatToKST(record.check_out_time) : ''}</TableCell>
+                </TableRow>
+              ))}
+            </tbody>
+          </StyledTable>
+        </TableContainer>
+      )}
     </FormContainer>
   );
 };

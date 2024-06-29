@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import supabase from '../../lib/supabaseClient';
-import { TableContainer, Subtitle, StyledTable, TableHead, TableRow, TableHeader, TableCell, LoadingText } from './StyledComponents';
+import { TableContainer, StyledTable, TableHead, TableRow, TableHeader, TableCell, LoadingText, Subtitle } from './StyledComponents';
 
 interface AttendanceRecord {
   id: number;
@@ -24,7 +24,8 @@ const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => 
     const { data, error } = await supabase
       .from('attendance')
       .select('*')
-      .eq('phone_suffix', phoneSuffix);
+      .eq('phone_suffix', phoneSuffix)
+      .order('check_in_time', { ascending: false });
 
     if (error) {
       console.error('Error fetching records:', error.message);

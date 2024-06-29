@@ -32,6 +32,7 @@ export const FormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 600px;
 `;
 
 export const Input = styled.input`
@@ -87,8 +88,10 @@ export const NavLink = styled(Link)`
 
 export const TableContainer = styled.div`
   padding: 20px;
-  max-width: 800px;
+  max-width: 600px; /* 테이블 컨테이너의 최대 너비를 설정 */
   margin: 0 auto;
+  overflow-x: auto;
+  text-align: center; /* 테이블 컨테이너를 중앙 정렬 */
 `;
 
 export const StyledTable = styled.table`

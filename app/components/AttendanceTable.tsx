@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import supabase from '../../lib/supabaseClient';
-import { TableContainer, StyledTable, TableHead, TableRow, TableHeader, TableCell, LoadingText, Subtitle, ModalContainer, Input, ModalButton } from './StyledComponents';
+import { TableContainer, StyledTable, TableHead, TableRow, TableHeader, TableCell, LoadingText, Subtitle, ModalContainer, Input, ModalButton, ModalHeader, DeleteButton } from './StyledComponents';
 
 interface AttendanceRecord {
   id: number;
@@ -69,6 +69,22 @@ const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => 
     }
   };
 
+  const handleDelete = async () => {
+    if (currentRecord) {
+      const { error } = await supabase
+        .from('attendance')
+        .delete()
+        .eq('id', currentRecord.id);
+
+      if (error) {
+        console.error('Error deleting record:', error.message);
+      } else {
+        fetchRecords();
+        closeModal();
+      }
+    }
+  };
+
   const toLocalString = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
@@ -112,7 +128,10 @@ const AttendanceTable: React.FC<{ phoneSuffix: string }> = ({ phoneSuffix }) => 
         onRequestClose={closeModal}
         ariaHideApp={false}
       >
-        <h2>기록 수정</h2>
+        <ModalHeader>
+          <h2>기록 수정</h2>
+          <DeleteButton onClick={handleDelete}>삭제</DeleteButton>
+        </ModalHeader>
         <Input
           type="datetime-local"
           value={checkInTime}

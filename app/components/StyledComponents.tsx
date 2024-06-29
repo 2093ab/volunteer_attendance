@@ -140,9 +140,42 @@ export const ModalContainer = styled(Modal)`
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
+  `;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
-export const ModalButton = styled(Button)`
-  max-width: 200px;
-  margin-top: 20px;
+export const ModalButton = styled.button`
+  display: block;
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px auto;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+
+  &:hover {
+    background-color: #005bb5;
+  }
+`;
+
+export const DeleteButton = styled.button`
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 20px;
+
+  &:hover {
+    background-color: darkred;
+  }
 `;

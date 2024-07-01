@@ -23,6 +23,9 @@ const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) =>
 
   useEffect(() => {
     fetchUserStatus();
+    fetchRecords();
+    setMessage('');
+    setIsCheckedIn(false);
   }, [phoneSuffix]);
 
   const fetchUserStatus = async () => {
@@ -33,7 +36,7 @@ const AttendanceButtons: React.FC<AttendanceButtonsProps> = ({ phoneSuffix }) =>
       .order('id', { ascending: false })
       .limit(1)
       .single();
-
+    console.log (data);
     if (error) {
       console.error('Error fetching user status:', error.message);
     } else {
